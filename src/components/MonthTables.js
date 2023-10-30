@@ -2,7 +2,6 @@
 import TableDataRows from './TableDataRows'; 
 
 function MonthTables({monthsToDisplayArray, transactionLog}) {
-   
     const tables = monthsToDisplayArray.map((date, i) => 
         <>
             <h2>{date.toLocaleString('default', { month: 'long',   year: "numeric" })}</h2>
@@ -15,12 +14,11 @@ function MonthTables({monthsToDisplayArray, transactionLog}) {
                 </tr>
                 
                 <TableDataRows 
-                    transactionLog = {
+                    filteredTransactionLog = {
                         transactionLog.filter((trans) => 
                         date.toLocaleString('default', { month: 'long', year: 'numeric'}) == new Date(trans.transactionDate).toLocaleString('default', { month: 'long',   year: 'numeric'}))
                     } 
                 />
-                
             </tbody>
             </table>
         </>

@@ -11,11 +11,6 @@ function App() {
     currentDateCopy.setMonth(currentDateCopy.getMonth() - m);
     monthsToDisplayArray.push(currentDateCopy); 
   }; 
-  
-  const calucateRewardPoints = function(dollars) {
-    let points = 0; 
-  }
-
 
   return (
     <div className="App">
@@ -23,10 +18,7 @@ function App() {
         <MonthTables 
           monthsToDisplayArray = {monthsToDisplayArray}
           transactionLog = {transactionLog}
-
         />
-     
-        
     </div>
   );
 }
