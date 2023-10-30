@@ -1,23 +1,29 @@
 import logo from './logo.svg';
+import MonthTables from './components/MonthTables.js'
 import './App.css';
+import transactionLog from './TransactionData.js'; 
 
 function App() {
+  const monthsToDisplayArray = []; 
+  for(let m = 0; m < 3; m++) {
+    let currentDate = new Date();
+    let currentDateCopy = currentDate; 
+    currentDateCopy.setMonth(currentDateCopy.getMonth() - m);
+    monthsToDisplayArray.push(currentDateCopy); 
+  }; 
+
+ 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1>Person's Customer Rewards</h1>
+        <MonthTables 
+          monthsToDisplayArray = {monthsToDisplayArray}
+          transactionLog = {transactionLog}
+
+        />
+     
+        
     </div>
   );
 }
