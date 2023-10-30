@@ -1,5 +1,6 @@
 
 function TableDataRows({filteredTransactionLog}) {
+    // Calculate Rewards Points Function
     const calculateRewardPoints = function(dollars) {
         let points = 0; 
         if(dollars >= 50) {
@@ -12,10 +13,11 @@ function TableDataRows({filteredTransactionLog}) {
         } 
         return points; 
     }
-    if(filteredTransactionLog.length > 0) {
+
+    if(filteredTransactionLog.length > 0) { // Check if it has any transactions
         return (
             <>
-            {filteredTransactionLog.map(function(transaction, i) {
+            {filteredTransactionLog.map(function(transaction, i) { // Map transactions to table rows
               return (
                 <tr key={i}>
                   <td>{transaction.transactionDate}</td>
@@ -25,11 +27,13 @@ function TableDataRows({filteredTransactionLog}) {
               )
             })}
             <div>
+                {/* Get Total using array reduce function */}
                 Total Monthly Points: {filteredTransactionLog.reduce((acc, obj) => acc + calculateRewardPoints(obj.transactionAmount), 0)}</div>
             </>
         );   
     } else {
         return (
+            // If there are no transactions. 
             <>
                 <div><h3>There are no transactions for this month</h3></div>
             </>
