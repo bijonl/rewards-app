@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import MonthTables from './components/MonthTables.js'
 import './styles/Table.css';
-import transactionLog from './TransactionData.js'; 
+import transactionLog from './TransactionData.js'; // All the transaction data
 
 function App() {
 
