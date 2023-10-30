@@ -5,7 +5,7 @@ function MonthTables({monthsToDisplayArray, transactionLog}) {
    
     const tables = monthsToDisplayArray.map((date, i) => 
         <>
-            <h2>{date.toLocaleString('default', { month: 'long' })} {date.getUTCFullYear()}</h2>
+            <h2>{date.toLocaleString('default', { month: 'long',   year: "numeric" })}</h2>
             <table>
             <tbody>
                 <tr>
@@ -14,7 +14,12 @@ function MonthTables({monthsToDisplayArray, transactionLog}) {
                     <th>Transaction Points Amount</th>
                 </tr>
                 
-                <TableDataRows transactionLog = {transactionLog} />
+                <TableDataRows 
+                    transactionLog = {
+                        transactionLog.filter((trans) => 
+                        date.toLocaleString('default', { month: 'long', year: 'numeric'}) == new Date(trans.transactionDate).toLocaleString('default', { month: 'long',   year: 'numeric'}))
+                    } 
+                />
                 
             </tbody>
             </table>
