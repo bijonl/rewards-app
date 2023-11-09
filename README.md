@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- To run app, run "npm start" in your Terminal. 
+- To load/get transaction data to work, navigate to rewards-app folder in Terminal if you are not there and run "npx json-server -p 3500 -w public/transactions.json"
+- Visit http://localhost:3030/transactions to see data. 
 
 ## Available Scripts
 
@@ -68,3 +70,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+

@@ -6,6 +6,8 @@ import transactionLog from './TransactionData.js'; // All the transaction data
 function App() {
 
   // Determines which months needs to be displayed
+  const API_URL = 'http://localhost:3500/transactions'; 
+
   const monthsToDisplayArray = []; // initialize array to store the months that need to be displayed. 
   const numberOfMonthsDisplayed = 3; // This variable says show 3 months -- the current month and 2 before it. 
   
@@ -16,6 +18,15 @@ function App() {
     currentDateCopy.setMonth(currentDateCopy.getMonth() - m);
     monthsToDisplayArray.push(currentDateCopy); 
   }; 
+
+  const fetchItems = async () => {
+    const response = await fetch(API_URL); 
+    const listItems = await response.json(); 
+  }
+
+  fetchItems(); 
+
+
 
   return (
     <div className="App">

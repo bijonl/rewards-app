@@ -6,16 +6,18 @@ function MonthTables({monthsToDisplayArray, transactionLog}) {
 
     const monthHeaders = monthsToDisplayArray.map((date, i) => {
         return (
-            <th>{date.toLocaleString('default', { month: 'long',   year: "numeric"})}</th>
+            <th key={i}>{date.toLocaleString('default', { month: 'long',   year: "numeric"})}</th>
         )
     });  
             
-             
-
     return (
         <table>
-            <th>Customer Name</th>
-            {monthHeaders}
+             <thead>
+                <tr>
+                    <th>Customer Name</th>
+                    {monthHeaders}
+                </tr>
+            </thead>
         </table>
     ); 
 }
