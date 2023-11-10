@@ -11,7 +11,7 @@ function App() {
   const API_URL = 'http://localhost:3500/transactions';
   const [allTransactionData, setAllTransactionData] = useState([]); 
   const [monthsToDisplay, setMonthsToDisplay] = useState([]); 
-  const [numberOfMonthsDisplayed, setnumberOfMonthsDisplayed] = useState(3); 
+  const [numberOfMonthsDisplayed, setnumberOfMonthsDisplayed] = useState(4); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +30,11 @@ function App() {
       monthsToDisplay.push(currentDate); 
     }; 
   }, []);
+
+  // const transactionTest =  {"id":1,"name":"Brook Moreton","username":"bmoreton0","customerID":"01HETARD7GEZSGCTDPA8PP8KPC","email":"bmoreton0@wp.com","transactionAmt":"$596.00","transactionDate":"2023-08-16T11:42:03Z"}; 
+  // const testDate = new Date(transactionTest.transactionDate); 
+  // console.log(testDate.toLocaleString('default', { month: 'long',   year: "numeric"})); 
+
 
   return (
     <div className="App">
