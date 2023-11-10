@@ -1,10 +1,10 @@
 
 // import TableDataRows from './TableDataRows'; 
 
-function MonthTables({monthsToDisplayArray, transactionLog}) {
+function MonthTables({monthsToDisplay, allTransactionData}) {
     // Loop though the months to create the tables. The array has store the timestamps of the days. 
-
-    const monthHeaders = monthsToDisplayArray.map((date, i) => {
+    console.log(allTransactionData); 
+    const monthHeaders = monthsToDisplay.map((date, i) => {
         return (
             <th key={i}>{date.toLocaleString('default', { month: 'long',   year: "numeric"})}</th>
         )
