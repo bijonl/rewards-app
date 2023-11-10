@@ -24,20 +24,20 @@ function MonthTables({monthsToDisplay, allTransactionData}) {
  
 
     const tableDataRows = uniqueCustomerIDs.map((customerID, i) => {
+        const customerName = getCustomerNameByID(allTransactionData, customerID)
+
+        const monthlyDataRows = monthsToDisplay.map((date, i) => {
+            return (
+            <td key={i}>{customerName}'s {date.toLocaleString('default', { month: 'long',   year: "numeric"})}</td>
+            )
+        }); 
+
         return (
             <tr>
                 <td>
-                    {getCustomerNameByID(allTransactionData, customerID)}
+                    {customerName}
                 </td>
-                <td>
-                    November    
-                </td>
-                <td>
-                    October
-                </td>
-                <td>
-                    September
-                </td>
+                {monthlyDataRows}
             </tr>
         )
 
