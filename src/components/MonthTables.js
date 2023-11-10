@@ -3,12 +3,45 @@
 
 function MonthTables({monthsToDisplay, allTransactionData}) {
     // Loop though the months to create the tables. The array has store the timestamps of the days. 
-    console.log(allTransactionData); 
+    
+    function getCustomerNameByID(transactionData, id) {
+        let customerName = ''; 
+        const transactionsWithID = transactionData.filter((transaction) => transaction.customerID == id); 
+        transactionsWithID.forEach((customer) => {
+            customerName = customer.name; 
+        }); 
+        return customerName; 
+    }
+
+    const uniqueCustomerIDs = ([...new Set(allTransactionData.map((element) => element.customerID))]); 
     const monthHeaders = monthsToDisplay.map((date, i) => {
         return (
             <th key={i}>{date.toLocaleString('default', { month: 'long',   year: "numeric"})}</th>
         )
     });  
+
+
+ 
+
+    const tableDataRows = uniqueCustomerIDs.map((customerID, i) => {
+        return (
+            <tr>
+                <td>
+                    {getCustomerNameByID(allTransactionData, customerID)}
+                </td>
+                <td>
+                    November    
+                </td>
+                <td>
+                    October
+                </td>
+                <td>
+                    September
+                </td>
+            </tr>
+        )
+
+    })
             
     return (
         <table>
@@ -17,7 +50,10 @@ function MonthTables({monthsToDisplay, allTransactionData}) {
                     <th>Customer Name</th>
                     {monthHeaders}
                 </tr>
+                {tableDataRows}
+                
             </thead>
+           
         </table>
     ); 
 }

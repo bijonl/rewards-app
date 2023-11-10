@@ -8,19 +8,18 @@ import { useEffect } from 'react';
 
 function App() {
 
-    const API_URL = 'http://localhost:3500/transactions'; 
-
+  const API_URL = 'http://localhost:3500/transactions';
   const [allTransactionData, setAllTransactionData] = useState([]); 
   const [monthsToDisplay, setMonthsToDisplay] = useState([]); 
   const [numberOfMonthsDisplayed, setnumberOfMonthsDisplayed] = useState(3); 
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(API_URL);
-      const newData = await response.json();
-      setAllTransactionData(newData);
-    }; 
-    fetchData(); 
+        const response = await fetch(API_URL);
+        const newData = await response.json();
+        setAllTransactionData(newData);
+      }
+      fetchData(); 
   }, []);
 
   useEffect(() => {
