@@ -1,7 +1,7 @@
 
 // import TableDataRows from './TableDataRows'; 
 
-function MonthTables({monthsToDisplay, allTransactionData}) {
+function MonthTables({monthsToDisplay, allTransactionData, loading}) {
     // Loop though the months to create the tables. The array has store the timestamps of the days. 
 
     function calculateRewardPoints(dollars) {
@@ -16,6 +16,8 @@ function MonthTables({monthsToDisplay, allTransactionData}) {
         } 
         return points; 
     }
+
+
     
     function getPointsPerMonthByID(data, date, ID) {
         const filteredTransactionsByMonth = data.filter((transaction) => { 
@@ -60,6 +62,7 @@ function MonthTables({monthsToDisplay, allTransactionData}) {
         const monthlyDataRows = monthsToDisplay.map((date, i) => {
         return (
             <td key={i}>{getPointsPerMonthByID(allTransactionData, date, customerID)}</td>
+            
         )
     }); 
 
@@ -73,19 +76,24 @@ function MonthTables({monthsToDisplay, allTransactionData}) {
         )
 
     })
-            
-    return (
-        <table>
-             <thead>
-                <tr>
-                    <th>Customer Name</th>
-                    {monthHeaders}
-                </tr>
-                {tableDataRows}
-            </thead>
-           
-        </table>
-    ); 
+    if(loading == false) {
+        return (
+            <table>
+                 <thead>
+                    <tr>
+                        <th>Customer Name</th>
+                        {monthHeaders}
+                    </tr>
+                    {tableDataRows}
+                </thead>
+               
+            </table>
+        ); 
+    } else {
+        return (
+            <div>Loading...</div>
+        )
+    }
 }
 
 export default MonthTables; 
