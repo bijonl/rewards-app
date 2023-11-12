@@ -3,30 +3,6 @@ module.exports = {
     browser: true,
     commonjs: true,
     es2021: true,
-<<<<<<< HEAD
-    node: true,
-  },
-  extends: 'airbnb',
-  overrides: [
-    {
-      env: {
-        node: true,
-      },
-      files: [
-        '.eslintrc.{js,cjs}',
-      ],
-      parserOptions: {
-        sourceType: 'script',
-      },
-    },
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-  },
-  rules: {
-  },
-};
-=======
     node: true
   },
   extends: [
@@ -55,4 +31,3 @@ module.exports = {
   rules: {
   }
 }
->>>>>>> linting
