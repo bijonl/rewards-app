@@ -36,7 +36,7 @@ function getPointsPerMonthByUsername (data, date, username) {
   return totalPoints
 }
 
-function MonthTables ({ monthsToDisplay, allTransactionData, loading }) {
+function RewardTable ({ monthsToDisplay, allTransactionData, loading }) {
   // Loop though the months to create the tables. The array has store the timestamps of the days.
   const uniqueCustomerIDs = useMemo(
     () => ([...new Set(allTransactionData.map((element) => element.username))]), [allTransactionData]
@@ -86,6 +86,12 @@ function MonthTables ({ monthsToDisplay, allTransactionData, loading }) {
             </table>
     )
   }
+
+  RewardTable.PropTypes = {
+    monthsToDisplay: PropTypes.array, 
+    allTransactionData: PropTypes.array, 
+    loading: PropTypes.bool
+  }
 }
 
-export default MonthTables
+export default RewardTable

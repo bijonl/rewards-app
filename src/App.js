@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import MonthTables from './components/RewardTable.js'
+import RewardTable from './components/RewardTable.js'
 import './App.css'
 
 const API_URL = 'http://localhost:3500/transactions'
@@ -33,7 +33,7 @@ function App () {
   return (
     <div className="App">
       <h1>Customer Rewards Table</h1>
-      <MonthTables // Component for each month table
+      <RewardTable // Component for each month table
         loading={loading}
         allTransactionData={allTransactionData}
         monthsToDisplay={monthsToDisplay}
