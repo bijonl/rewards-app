@@ -1,38 +1,38 @@
-import MonthTables from './components/MonthTables.js'
-import './styles/Table.css'
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
+import MonthTables from './components/RewardTable.js'
+import './App.css'
+
+const API_URL = 'http://localhost:3500/transactions'
+const NUMBER_OF_MONTHS_TO_DISPLAY = 3
+
+// Returns an array of length 'numberOfMonths' of dates one month apart, in descending order starting with today .
+function getMonthsToDisplay (numberOfMonths) {
+  const monthsToDisplay = []
+  for (let month = 0; month < numberOfMonths; month++) {
+    const currentDate = new Date()
+    currentDate.setMonth(currentDate.getMonth() - month)
+    monthsToDisplay.push(currentDate)
+  }
+  return monthsToDisplay
+}
 
 function App () {
-  const API_URL = 'http://localhost:3500/transactions'
   const [allTransactionData, setAllTransactionData] = useState([])
-  const [monthsToDisplay, setMonthsToDisplay] = useState([])
-  const [numberOfMonthsDisplayed, setnumberOfMonthsDisplayed] = useState(3)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true)
-      const response = await fetch(API_URL)
-      const newData = await response.json()
-      setAllTransactionData(newData)
-      setLoading(false) // Stop loading
-    }
-
-    fetchData()
+    setLoading(true)
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(setAllTransactionData)
+      .finally(() => setLoading(false))
   }, [])
 
-  useEffect(() => {
-    // Loops the number of months, gets the date and pushes it into the months to display Array.
-    for (let month = 0; month < numberOfMonthsDisplayed; month++) {
-      const currentDate = new Date()
-      currentDate.setMonth(currentDate.getMonth() - month)
-      monthsToDisplay.push(currentDate)
-    };
-  }, [])
+  const monthsToDisplay = useMemo(() => getMonthsToDisplay(NUMBER_OF_MONTHS_TO_DISPLAY), [])
 
   return (
     <div className="App">
-      <h1>Person's Customer Rewards</h1>
+      <h1>Customer Rewards Table</h1>
       <MonthTables // Component for each month table
         loading={loading}
         allTransactionData={allTransactionData}

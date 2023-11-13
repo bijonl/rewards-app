@@ -3,8 +3,7 @@
 }
 
 table {
-  display: flex; 
-  justify-content: center;
+  margin-inline: auto; 
 }
 
 table th {
