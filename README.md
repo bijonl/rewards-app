@@ -10,7 +10,16 @@
     - enter in the number of months they want see
     - enter a date range and see a monthly breakdown for that range
 - Include a feature where the user can enter a username have the table filter to just that users information. 
+- I would add more styling enhancements - I kept most of the focus on the functionlity for this coding assessment. Below are some websites I have built that showcase my styling abilities. 
+    - [Spencer Fane Law Firm](https://www.spencerfane.com/services/)
+    - [PromoPulse](https://promopulse.io/)
+    - [Saints Block Party Podcast](https://saintsblockparty.com/)
+
+
 
 # Screenshots 
+Loading State for the App
 ![Loading State for App](./public/screenshots/loading-state.png)
+
+Loaded State for the App
 ![Loaded State for App](./public/screenshots/loaded-state.png)
