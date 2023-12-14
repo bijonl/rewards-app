@@ -31,31 +31,6 @@ function App () {
 
   const monthYearsToDisplay = useMemo(() => getMonthYearsToDisplay(NUMBER_OF_MONTHS_TO_DISPLAY), [])
 
-  const uniqueCustomerData = Object.create(null);
-
-  console.log(allTransactionData); 
-  allTransactionData.map((transaction) => {
-    const date = formatDateToMonthYear(new Date(transaction.transactionDate)); 
-    const formattedDateKey = date.replace(' ', '_').toLowerCase(); 
-
-    if(uniqueCustomerData[transaction.username] === undefined) {
-      // Customer is not there
-      console.log('CUSTOMER NOT HERE'); 
-      uniqueCustomerData[transaction.username] = {}; 
-      uniqueCustomerData[transaction.username][formattedDateKey] = calculateRewardPoints(transaction.transactionAmount);
-      console.log('------');
-    } else {
-      console.log('CUSTOMER IS THERE'); 
-      if(uniqueCustomerData[transaction.username][formattedDateKey] !== undefined) {
-        uniqueCustomerData[transaction.username][formattedDateKey] += calculateRewardPoints(transaction.transactionAmount);
-      } else {
-        uniqueCustomerData[transaction.username][formattedDateKey] = calculateRewardPoints(transaction.transactionAmount);
-      }
-  }
-}); 
-
-  console.log(uniqueCustomerData); 
-
   return (
     <div className="App">
       <h1>Customer Rewards Table</h1>

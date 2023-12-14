@@ -30,4 +30,22 @@ function getPointsPerMonthByUsername (data, monthYear, username) {
   )
 }
 
-export { formatDateToMonthYear, calculateRewardPoints, getPointsPerMonthByUsername }
+function getUniqueCustomerDataObject (transactionData) {
+  const uniqueCustomerDataObject = Object.create(null)
+  transactionData.map((transaction) => {
+    const formattedDateKey = formatDateToMonthYear(new Date(transaction.transactionDate)).replace(' ', '_').toLowerCase()
+    if (uniqueCustomerDataObject[transaction.username] === undefined) {
+      uniqueCustomerDataObject[transaction.username] = {}
+      uniqueCustomerDataObject[transaction.username][formattedDateKey] = calculateRewardPoints(transaction.transactionAmount)
+    } else {
+      if (uniqueCustomerDataObject[transaction.username][formattedDateKey] !== undefined) {
+        uniqueCustomerDataObject[transaction.username][formattedDateKey] += calculateRewardPoints(transaction.transactionAmount)
+      } else {
+        uniqueCustomerDataObject[transaction.username][formattedDateKey] = calculateRewardPoints(transaction.transactionAmount)
+      }
+    }
+  })
+  return uniqueCustomerDataObject
+}
+
+export { formatDateToMonthYear, calculateRewardPoints, getPointsPerMonthByUsername, getUniqueCustomerDataObject }

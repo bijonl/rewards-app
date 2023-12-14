@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { getPointsPerMonthByUsername } from '../util/util'
+import { getUniqueCustomerDataObject } from '../util/util'
 
 RewardTable.propTypes = {
   monthYearsToDisplay: PropTypes.array.isRequired,
@@ -9,12 +9,14 @@ RewardTable.propTypes = {
 }
 
 function RewardTable ({ monthYearsToDisplay, allTransactionData = null, loading = false }) {
-  const uniqueCustomerUsernames = useMemo(() => {
+  const uniqueCustomerUsernameObject = useMemo(() => {
     if (!allTransactionData) return []
-    return ([...new Set(allTransactionData.map((element) => element.username))])
+    return (getUniqueCustomerDataObject(allTransactionData))
   }, [allTransactionData])
 
   if (loading) return <div>Loading...</div>
+
+  // console.log(uniqueCustomerUsernameObject);
 
   return (
     <table>
@@ -28,15 +30,17 @@ function RewardTable ({ monthYearsToDisplay, allTransactionData = null, loading 
         </tr>
       </thead>
       <tbody>
-        {uniqueCustomerUsernames.map(customerUsername => {
+        {
+        Object.entries(uniqueCustomerUsernameObject).map(([customerUsername, customerTransactionData]) => {
           let userTotal = 0
           return (
             <tr key={customerUsername}>
               <td>{customerUsername}</td>
               {monthYearsToDisplay.map(monthYear => {
-                const pointsPerMonthAndUsername = getPointsPerMonthByUsername(allTransactionData, monthYear, customerUsername)
-                userTotal += pointsPerMonthAndUsername
-                return <td key={monthYear}>{pointsPerMonthAndUsername}</td>
+                // Need this formatting to be able to look up the month in the Object.
+                const formattedMonthYearLookupValue = monthYear.replace(' ', '_').toLowerCase()
+                userTotal += customerTransactionData[formattedMonthYearLookupValue] ? customerTransactionData[formattedMonthYearLookupValue] : 0
+                return <td key={monthYear}>{customerTransactionData[formattedMonthYearLookupValue] ? customerTransactionData[formattedMonthYearLookupValue] : 0}</td>
               })}
               <td>{userTotal}</td>
             </tr>
