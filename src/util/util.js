@@ -23,7 +23,7 @@ function getUniqueCustomerDataObject (transactionData) {
     // This makes for an easy lookup on output later
     const formattedDateKey = formatDateToMonthYear(new Date(transaction.transactionDate)).replace(' ', '_').toLowerCase()
     const usernameInCustomerObject = uniqueCustomerDataObject[transaction.username] !== undefined
-    if (usernameInCustomerObject) { // Check if username is NOT in the object
+    if (usernameInCustomerObject) { // If username is ALREADY IN the object
       // Check if the month_year has been accounted for previously
       if (uniqueCustomerDataObject[transaction.username][formattedDateKey] !== undefined) {
         // If the date is already attached to that username, add the transaction amount in points.
