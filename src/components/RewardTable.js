@@ -11,12 +11,10 @@ RewardTable.propTypes = {
 function RewardTable ({ monthYearsToDisplay, allTransactionData = null, loading = false }) {
   const uniqueCustomerUsernameObject = useMemo(() => {
     if (!allTransactionData) return []
-    return (getUniqueCustomerDataObject(allTransactionData))
+    return getUniqueCustomerDataObject(allTransactionData) // Output object of unique customers. See util.js file for function.
   }, [allTransactionData])
 
   if (loading) return <div>Loading...</div>
-
-  // console.log(uniqueCustomerUsernameObject);
 
   return (
     <table>

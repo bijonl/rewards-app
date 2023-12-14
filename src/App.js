@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import RewardTable from './components/RewardTable.js'
-import { formatDateToMonthYear, calculateRewardPoints } from './util/util.js'
+import { formatDateToMonthYear } from './util/util.js'
 import './App.css'
 
 const API_URL = 'http://localhost:3500/transactions'
