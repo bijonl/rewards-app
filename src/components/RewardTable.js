@@ -36,9 +36,8 @@ function RewardTable ({ monthYearsToDisplay, allTransactionData = null, loading 
               <td>{customerUsername}</td>
               {monthYearsToDisplay.map(monthYear => {
                 // Need this formatting to be able to look up the month in the Object.
-                const formattedMonthYearLookupValue = monthYear.replace(' ', '_').toLowerCase()
-                userTotal += customerTransactionData[formattedMonthYearLookupValue] ? customerTransactionData[formattedMonthYearLookupValue] : 0
-                return <td key={monthYear}>{customerTransactionData[formattedMonthYearLookupValue] ? customerTransactionData[formattedMonthYearLookupValue] : 0}</td>
+                userTotal += customerTransactionData[monthYear] ? customerTransactionData[monthYear] : 0
+                return <td key={monthYear}>{customerTransactionData[monthYear] ? customerTransactionData[monthYear] : 0}</td>
               })}
               <td>{userTotal}</td>
             </tr>

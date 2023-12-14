@@ -21,7 +21,7 @@ function getUniqueCustomerDataObject (transactionData) {
     // Needed to reformat date for object since object key can't have a space like 'November 2023'
     // Makes the date month_years (ie november_2023)
     // This makes for an easy lookup on output later
-    const formattedDateKey = formatDateToMonthYear(new Date(transaction.transactionDate)).replace(' ', '_').toLowerCase()
+    const formattedDateKey = formatDateToMonthYear(new Date(transaction.transactionDate))
     const usernameInCustomerObject = uniqueCustomerDataObject[transaction.username] !== undefined
     if (usernameInCustomerObject) { // If username is ALREADY IN the object
       // Check if the month_year has been accounted for previously
