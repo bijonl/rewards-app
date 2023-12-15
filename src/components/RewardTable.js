@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { getUniqueCustomerDataObject } from '../util/util'
+import { getMonthlyPointsSummaryByUsername } from '../util/util'
 
 RewardTable.propTypes = {
   monthYearsToDisplay: PropTypes.array.isRequired,
@@ -9,9 +9,9 @@ RewardTable.propTypes = {
 }
 
 function RewardTable ({ monthYearsToDisplay, allTransactionData = null, loading = false }) {
-  const uniqueCustomerUsernameObject = useMemo(() => {
-    if (!allTransactionData) return []
-    return getUniqueCustomerDataObject(allTransactionData) // Output object of unique customers. See util.js file for function.
+  const monthlyPointsSummaryByUsername = useMemo(() => {
+    if (!allTransactionData) return {}
+    return getMonthlyPointsSummaryByUsername(allTransactionData) // Output object of unique customers. See util.js file for function.
   }, [allTransactionData])
 
   if (loading) return <div>Loading...</div>
@@ -28,18 +28,14 @@ function RewardTable ({ monthYearsToDisplay, allTransactionData = null, loading 
         </tr>
       </thead>
       <tbody>
-        {
-        Object.entries(uniqueCustomerUsernameObject).map(([customerUsername, customerTransactionData]) => {
-          let userTotal = 0
+        {Object.entries(monthlyPointsSummaryByUsername).map(([customerUsername, monthlyPointsSummary]) => {
           return (
             <tr key={customerUsername}>
               <td>{customerUsername}</td>
               {monthYearsToDisplay.map(monthYear => {
-                // Need this formatting to be able to look up the month in the Object.
-                userTotal += customerTransactionData[monthYear] ? customerTransactionData[monthYear] : 0
-                return <td key={monthYear}>{customerTransactionData[monthYear] ? customerTransactionData[monthYear] : 0}</td>
+                return <td key={monthYear}>{monthlyPointsSummary[monthYear] ? monthlyPointsSummary[monthYear] : 0}</td>
               })}
-              <td>{userTotal}</td>
+              <td>{monthYearsToDisplay.reduce((total, monthYear) => total + (monthlyPointsSummary[monthYear] ? monthlyPointsSummary[monthYear] : 0), 0)}</td>
             </tr>
           )
         })}
